@@ -125,7 +125,6 @@ POWERLEVEL9K_STATUS_CROSS=true
 
 # 'none' for transparent background
 # from this issue: https://github.com/Powerlevel9k/powerlevel9k/issues/240
-
 POWERLEVEL9K_VIRTUALENV_BACKGROUND='none'
 POWERLEVEL9K_VIRTUALENV_FOREGROUND='208'
 POWERLEVEL9K_DIR_HOME_BACKGROUND='none'
