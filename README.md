@@ -2,6 +2,8 @@
 
 My dotfiles.
 
+**Important: `setup.sh` has not been tested yet!**
+
 ## Current
 
 - `.vimrc` for vim
