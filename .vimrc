@@ -18,6 +18,7 @@ Plugin 'zxqfl/tabnine-vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'sjl/gundo.vim'
+Plugin 'ryanoasis/vim-devicons'
 
 call vundle#end()
 filetype plugin indent on
@@ -79,6 +80,8 @@ let g:lightline = {
 
 " setup colorscheme
 colorscheme onedark
+
+hi Normal guibg=NONE ctermbg=NONE
 
 " fuck arrow key
 map <up> <nop>
