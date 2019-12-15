@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # remove below line if you want to setup
-exit
-
+#exit
 # DEBUG: echo command before execute
 # set -x
 
@@ -33,7 +32,7 @@ if [ ! -x "$(command -v zsh)" ]; then
 fi
 
 # download Sauce Code Pro Nerd font and build link
-mkdir ~/.local/share/fonts
+mkdir -p ~/.local/share/fonts
 curl -LO https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf
 old_filename=`ls | grep ttf`
 new_filename=`echo $old_filename | sed "s/%20/ /g"`
@@ -42,9 +41,11 @@ mv "$new_filename" ~/.local/share/fonts
 
 # build link
 printf "${YELLOW}Building link to dotfiles${NC}\n"
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/.mytheme.sh ~/.mytheme.sh
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
+filepath=$(realpath "$0")
+dir=$(dirname "$filepath")
+ln -sf $dir/.zshrc ~/.zshrc
+ln -sf $dir/.mytheme.sh ~/.mytheme.sh
+ln -sf $dir/.vimrc ~/.vimrc
 
 # setup antigen
 printf "${YELLOW}Setting up antigen for zsh package management\n${NC}"
