@@ -65,6 +65,6 @@ HIST_STAMPS="yyyy-mm-dd"
 ##############################
 
 # aliases here
-source ~/.bash_profile
+source ~/.bash_profile 2>/dev/null
 
 antigen apply

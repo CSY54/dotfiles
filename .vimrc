@@ -23,8 +23,9 @@ Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
 filetype plugin indent on
 
-" for vue highlighting
+" for file highlighting
 au BufRead,BufNewFile *.vue set filetype=typescript
+au BufRead,BufNewFile *.ejs set filetype=html
 
 set nu rnu
 set ai
@@ -140,7 +141,7 @@ let g:onedark_termcolors=256
 let g:rainbow_active=1
 
 " closetag
-let g:closetag_html_style='*.html,*.xhtml,*.phtml,*.ejs)'
+let g:closetag_html_style='*.html,*.xhtml,*.phtml,*.ejs'
 let g:closetag_filetypes='html,xhtml,phtml,ejs'
 
 " cpp enhanced highlight
