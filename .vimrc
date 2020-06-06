@@ -6,34 +6,49 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+
+" Nerdtree related
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ryanoasis/vim-devicons'
+
+" Lightline related
 Plugin 'itchyny/lightline.vim'
+Plugin 'itchyny/vim-gitbranch'
+
+" Colorscheme
+Plugin 'joshdick/onedark.vim'
+
+" Syntax Highlighting
+" Plugin 'sheerun/vim-polyglot'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'jelera/vim-javascript-syntax'
+" Plugin 'posva/vim-vue'
+" Plugin 'leafOfTree/vim-vue-plugin'
+" Plugin 'udalov/kotlin-vim'
+" Plugin 'digitaltoad/vim-pug'
+
+" Unit Testing
+Plugin 'vim-test/vim-test'
+
+" Coding Utils
 Plugin 'Yggdroot/indentLine'
 Plugin 'luochen1990/rainbow'
 Plugin 'alvan/vim-closetag'
-Plugin 'joshdick/onedark.vim'
 Plugin 'zxqfl/tabnine-vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'sjl/gundo.vim'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'posva/vim-vue'
-Plugin 'leafOfTree/vim-vue-plugin'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'udalov/kotlin-vim'
-Plugin 'digitaltoad/vim-pug'
 Plugin 'dense-analysis/ale'
-Plugin 'itchyny/vim-gitbranch'
 
 call vundle#end()
 filetype plugin indent on
 
 " for file highlighting
 " au BufRead,BufNewFile *.vue set filetype=typescript
-au BufRead,BufNewFile *.ejs set filetype=html
-au BufRead,BufNewFile *.ino set filetype=cpp
+" au BufRead,BufNewFile *.ejs set filetype=html
+" au BufRead,BufNewFile *.ino set filetype=cpp
 
 set nu rnu
 set ai
@@ -61,7 +76,6 @@ set guicursor+=a:blinkon0
 " different setting for different language
 au Filetype c,cpp setlocal ts=4 sw=4 sts=4 noexpandtab
 au Filetype javascript setlocal ts=2 sw=2 sts=2 expandtab
-au Filetype php setlocal ts=4 sw=4 sts=4 expandtab
 
 syntax enable
 syntax on
@@ -145,8 +159,8 @@ map <right> <nop>
 " no shift needed
 nnoremap ; :
 " Disable recording and map it to quit
-nnoremap <silent> q :q<CR>
-nnoremap <silent> Q :q!<CR>
+nnoremap <silent>q :q<CR>
+nnoremap <silent>Q :q!<CR>
 
 " coding utils
 " inoremap ( ()<ESC>i
@@ -197,8 +211,8 @@ let g:onedark_termcolors=256
 let g:rainbow_active=1
 
 " closetag
-let g:closetag_html_style='*.html,*.xhtml,*.phtml,*.ejs,*.vue'
-let g:closetag_filetypes='html,xhtml,phtml,ejs,vue'
+" let g:closetag_html_style='*.html,*.xhtml,*.phtml,*.ejs,*.vue'
+" let g:closetag_filetypes='html,xhtml,phtml,ejs,vue'
 
 " cpp enhanced highlight
 let g:cpp_class_scope_highlight=1
@@ -222,9 +236,6 @@ if has('python3')
 endif
 nnoremap <leader>h :GundoToggle<CR>
 
-" auto pairs
-au FileType php let b:AutoPairs = AutoPairsDefine({'<?php': '?>'})
-
 " ale
 let g:ale_linters = {
 \   'javascript': ['eslint', 'prettier'],
@@ -240,3 +251,7 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
 " for Vue
 let b:ale_linter_aliases = ['javascript', 'vue']
+
+" Problem with vue highlighting
+" https://github.com/sheerun/vim-polyglot/issues/292
+let g:polyglot_disabled = ['coffee-script']

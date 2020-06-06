@@ -45,7 +45,8 @@ printf "${YELLOW}Building link to dotfiles${NC}\n"
 filepath=$(realpath "$0")
 dir=$(dirname "$filepath")
 ln -sf $dir/.zshrc ~/.zshrc
-ln -sf $dir/.mytheme.sh ~/.mytheme.sh
+ln -sf $dir/.p10k ~/.p10k
+ln -sf $dir/.mytheme2.sh ~/.mytheme2.sh
 ln -sf $dir/.vimrc ~/.vimrc
 
 # setup antigen
