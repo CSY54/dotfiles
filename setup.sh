@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # remove below line if you want to setup
-# exit
+exit
 
 # DEBUG: echo command before execute
-set -x
+# set -x
 
 install_if_not_exists() {
   install_method="$1"
@@ -38,7 +38,7 @@ elif [ -x "$(command -v dnf)" ]; then
   # util-linux-user: chsh
   packages=("zsh" "curl" "git" "util-linux-user" "tmux")
 else
-  printf "${RED}Unknown install method, exiting...${NC}"
+  printf "\033[0;31mUnknown install method, exiting...\033[0m"
   exit
 fi
 
