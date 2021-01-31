@@ -1,38 +1,57 @@
 #!/bin/bash
 
 # remove below line if you want to setup
-exit
+# exit
 
 # DEBUG: echo command before execute
-# set -x
+set -x
 
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-NC='\033[0m'
+install_if_not_exists() {
+  install_method="$1"
+  shift
+  packages="$@"
 
-printf "${YELLOW}Installing dependencies\n${NC}"
+  for package in $packages; do
+    printf "${YELLOW}Installing ${package}\n"
+    # safe huh?
+    eval "$install_method $package"
+  done
+}
+
+prompt() {
+  message="$1"
+  printf "\033[1;33m${message}\033[0m\n"
+}
 
 if [ -x "$(command -v brew)" ]; then
   # macOS
-  brew install curl git
+  install="brew install"
+  packages=("zsh" "curl" "git" "tmux")
 elif [ -x "$(command -v apt)" ]; then
   # Ubuntu
-  sudo apt install curl git
+  install="sudo apt install"
+  packages=("zsh" "curl" "git" "tmux")
+  # sudo apt install zsh curl git
 elif [ -x "$(command -v dnf)" ]; then
   # Fedora
+  install="sudo dnf install"
   # util-linux-user: chsh
-  sudo dnf install curl git util-linux-user zsh
+  packages=("zsh" "curl" "git" "util-linux-user" "tmux")
 else
-  printf "${RED}Unknown os, exiting...${NC}"
+  printf "${RED}Unknown install method, exiting...${NC}"
   exit
 fi
 
-# install zsh
+install_if_not_exists "${install}" "${packages[@]}"
+
+# Change default shell into zsh
 if [ ! -x "$(command -v zsh)" ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && chsh -s $(which zsh)
+  prompt "Changing default shell into zsh"
+  chsh -s $(which zsh)
 fi
 
 # download Sauce Code Pro Nerd font and build link
+prompt "Downloading Sauce Code Pro Nerd font and build link"
 mkdir -p ~/.local/share/fonts
 curl -LO https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf
 old_filename=`ls | grep ttf`
@@ -40,24 +59,26 @@ new_filename=`echo $old_filename | sed "s/%20/ /g"`
 mv "$old_filename" "$new_filename"
 mv "$new_filename" ~/.local/share/fonts
 
-# build link
-printf "${YELLOW}Building link to dotfiles${NC}\n"
+# build link to dot files
+prompt "Building links to dot files"
 filepath=$(realpath "$0")
 dir=$(dirname "$filepath")
 ln -sf $dir/.zshrc ~/.zshrc
-ln -sf $dir/.p10k ~/.p10k
-ln -sf $dir/.mytheme2.sh ~/.mytheme2.sh
 ln -sf $dir/.vimrc ~/.vimrc
+git clone https://github.com/gpakosz/.tmux.git
+ln -sf .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local ~
 
-# setup antigen
-printf "${YELLOW}Setting up antigen for zsh package management\n${NC}"
-curl -sL git.io/antigen > ~/antigen.zsh
+# setup zim
+prompt "Setting up Zim"
+curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
 
-# setup Vundle
-printf "${YELLOW}Setting up Vundle for vim package management\n${NC}"
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+# setup Vim Plug
+prompt "Setting up Vim Plug"
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall +qall
 
 # Yay!
-printf "${YELLOW}Finished\nPlease restart your device to apply\n${NC}"
+prompt "Finished! Please restart your termnal to apply!"
 
