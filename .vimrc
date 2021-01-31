@@ -308,14 +308,14 @@ autocmd VimEnter * NERDTree | wincmd p " Open on startup and focus on the opened
 let NERDTreeShowHidden=1
 
 " https://github.com/preservim/nerdtree/issues/815
-" augroup nerdtree
-"   autocmd!
-"   autocmd FileType nerdtree syntax clear NERDTreeFlags
-"   autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
-"   autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
-"   autocmd FileType nerdtree setlocal conceallevel=2
-"   autocmd FileType nerdtree setlocal concealcursor=nvic
-" augroup END
+augroup nerdtree
+  autocmd!
+  autocmd FileType nerdtree syntax clear NERDTreeFlags
+  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
+  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
+  autocmd FileType nerdtree setlocal conceallevel=2
+  autocmd FileType nerdtree setlocal concealcursor=nvic
+augroup END
 
 " NERDCommenter
 let g:NERDSpaceDelims=1

@@ -72,6 +72,15 @@ cp .tmux/.tmux.conf.local ~
 # setup zim
 prompt "Setting up Zim"
 curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+sed -i "
+s/bindkey -e/bindkey -v/g
+s/#setopt CORRECT/setopt CORRECT/g
+s/#zstyle ':zim:git' aliases-prefix 'g'/zstyle ':zim:git' aliases-prefix 'g'/g
+s/#zstyle ':zim:input' double-dot-expand yes/zstyle ':zim:input' double-dot-expand yes/g
+s/#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'/ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'/g
+s/#typeset -A ZSH_HIGHLIGHT_STYLES/typeset -A ZSH_HIGHLIGHT_STYLES/g
+s/#ZSH_HIGHLIGHT_STYLES[comment]='fg=10'/ZSH_HIGHLIGHT_STYLES[comment]='fg=10'/g
+" ~/.zshrc
 
 # setup Vim Plug
 prompt "Setting up Vim Plug"
