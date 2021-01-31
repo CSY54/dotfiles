@@ -5,8 +5,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'luochen1990/rainbow'
 Plug 'alvan/vim-closetag'
 Plug 'Yggdroot/indentLine'
-Plug 'luochen1990/rainbow'
-Plug 'alvan/vim-closetag'
 " Plug 'zxqfl/tabnine-vim'
 Plug 'gcmt/wildfire.vim'
 " Plug 'sjl/gundo.vim'
@@ -15,7 +13,15 @@ Plug 'dense-analysis/ale'
 Plug 'editorconfig/editorconfig-vim'
 
 " Coc
-Plug 'neoclide/coc.nvim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'fannheyward/coc-markdownlint', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'iamcco/coc-flutter', {'do': 'yarn install --frozen-lockfile'}
 
 " Nerdtree related
 Plug 'scrooloose/nerdtree'
@@ -30,36 +36,44 @@ Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'mengelbrecht/lightline-bufferline'
-Plug 'maximbaz/lightline-ale'
+" Plug 'maximbaz/lightline-ale'
 Plug 'maximbaz/lightline-trailing-whitespace'
 
 " Syntax Highlighting
 " Plug 'sheerun/vim-polyglot'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'jelera/vim-javascript-syntax'
+" Plug 'octol/vim-cpp-enhanced-highlight'
+" Plug 'jelera/vim-javascript-syntax'
 " Plug 'posva/vim-vue'
-Plug 'leafOfTree/vim-vue-plugin'
-Plug 'udalov/kotlin-vim'
-Plug 'digitaltoad/vim-pug'
-Plug 'iloginow/vim-stylus'
+" Plug 'leafOfTree/vim-vue-plugin'
+" Plug 'udalov/kotlin-vim'
+" Plug 'digitaltoad/vim-pug'
+" Plug 'iloginow/vim-stylus'
 " Plug 'ollykel/v-vim'
-Plug 'jwalton512/vim-blade'
+" Plug 'jwalton512/vim-blade'
+" Plug 'nikvdp/ejs-syntax'
+" Plug 'pwntester/codeql.nvim'
+" Plug 'dart-lang/dart-vim-plugin'
+
+" Laravel
+" Plug 'tpope/vim-dispatch'
+" Plug 'tpope/vim-projectionist'
+" Plug 'noahfrederick/vim-composer'
+" Plug 'noahfrederick/vim-laravel'
 
 " Unit Testing
 " Plug 'vim-test/vim-test'
 
 " Game WTF
-Plug 'johngrib/vim-game-snake'
+" Plug 'johngrib/vim-game-snake'
 
 " Waka-waka
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 filetype plugin indent on
 
 " for file highlighting
 " au BufRead,BufNewFile *.vue set filetype=typescript
-" au BufRead,BufNewFile *.ejs set filetype=html
 au BufRead,BufNewFile *.ino set filetype=cpp
 au BufRead,BufNewFile *.sage set filetype=python
 
@@ -95,6 +109,7 @@ syntax on
 
 " different setting for different language
 au Filetype c,cpp setlocal ts=4 sw=4 sts=4 noexpandtab
+au Filetype php setlocal ts=4 sw=4 sts=4 expandtab
 au Filetype javascript,vue setlocal ts=2 sw=2 sts=2 expandtab
 
 if has("termguicolors")
@@ -191,6 +206,9 @@ let g:lightline = {
 \ 'component_function': {
 \   'readonly': 'LightlineReadonly',
 \   'gitbranch': 'gitbranch#name'
+\ },
+\ 'component_raw': {
+\   'buffers': 1
 \ }
 \ }
 
@@ -214,6 +232,7 @@ let g:lightline#bufferline#shorten_path = 0
 let g:lightline#bufferline#unnamed = '[No Name]'
 let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#clickable = 1
 let g:lightline#bufferline#number_map = {
 \ 0: '₀', 1: '₁', 2: '₂', 3: '₃', 4: '₄',
 \ 5: '₅', 6: '₆', 7: '₇', 8: '₈', 9: '₉'}
@@ -270,7 +289,7 @@ nnoremap <F8> <ESC>:w<CR>:!python3 %<CR>
 nnoremap <F9> <ESC>:w<CR>:!g++ -std=c++17 -O2 -Wall -Wextra -Wshadow %<CR>
 nnoremap <F10> :!./a.out<CR>
 nnoremap <F11> :!./a.out < in<CR>
-nnoremap <F12> :!kotlinc % -include-runtime -d out.jar && echo "Compile finished" && java -jar out.jar<CR>
+" nnoremap <F12> :!kotlinc % -include-runtime -d out.jar && echo "Compile finished" && java -jar out.jar<CR>
 
 " for pane moving
 nnoremap <C-J> <C-W><C-J>
@@ -279,25 +298,24 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
 
 let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusConcealBrackets = 1
 " NERDTree
 noremap <C-n> :NERDTreeToggle<CR>
 autocmd VimEnter * NERDTree | wincmd p " Open on startup and focus on the opened file
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close on exit
 " let NERDTreeIgnore=['\.pyc$', '\~$', 'node_modules'] " Ignore files in NERDTree
-let NERDTreeMinimalUI=1
+" let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 
 " https://github.com/preservim/nerdtree/issues/815
-augroup nerdtree
-  autocmd!
-  autocmd FileType nerdtree syntax clear NERDTreeFlags
-  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
-  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
-  autocmd FileType nerdtree setlocal conceallevel=3
-  autocmd FileType nerdtree setlocal concealcursor=nvic
-augroup END
-
-" let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+" augroup nerdtree
+"   autocmd!
+"   autocmd FileType nerdtree syntax clear NERDTreeFlags
+"   autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
+"   autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
+"   autocmd FileType nerdtree setlocal conceallevel=2
+"   autocmd FileType nerdtree setlocal concealcursor=nvic
+" augroup END
 
 " NERDCommenter
 let g:NERDSpaceDelims=1
@@ -317,10 +335,14 @@ let g:onedark_termcolors=256
 
 " rainbow
 let g:rainbow_active=1
+let g:rainbow_conf = {
+\   'guifgs': ['lightred', 'lightgreen', 'lightcyan', 'lightmagenta'],
+\   'ctermfgs': ['lightred', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\ }
 
 " closetag
-let g:closetag_html_style='*.html,*.xhtml,*.phtml,*.ejs,*.vue'
-let g:closetag_filetypes='html,xhtml,phtml,ejs,vue'
+let g:closetag_html_style='*.html,*.xhtml,*.phtml,*.ejs,*.vue,*.blade.php'
+let g:closetag_filetypes='html,xhtml,phtml,ejs,vue,blade'
 
 " cpp enhanced highlight
 let g:cpp_class_scope_highlight=1
@@ -388,3 +410,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+let g:codeql_max_ram = 32000
+let g:codeql_search_path = ['~/codeql-home/codeql-repo']
