@@ -42,41 +42,41 @@ Plug 'maximbaz/lightline-trailing-whitespace'
 
 
 " language specific
-Plug 'alvan/vim-closetag', { 'for': ['html', 'ejs', 'vue', 'blade'] }
-Plug 'editorconfig/editorconfig-vim'
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-Plug 'posva/vim-vue', { 'for': 'vue' }
+" Plug 'alvan/vim-closetag', { 'for': ['html', 'ejs', 'vue', 'blade'] }
+" Plug 'editorconfig/editorconfig-vim'
+" Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
+" Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+" Plug 'posva/vim-vue', { 'for': 'vue' }
 " Plug 'leafOfTree/vim-vue-plugin', { 'for': 'vue' }
-Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
-Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'vue'] }
+" Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+" Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'vue'] }
 " Plug 'ollykel/v-vim', { 'for': 'v' }
-Plug 'jwalton512/vim-blade', { 'for': 'blade' }
-Plug 'nikvdp/ejs-syntax', { 'for': 'ejs' }
-Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+" Plug 'jwalton512/vim-blade', { 'for': 'blade' }
+" Plug 'nikvdp/ejs-syntax', { 'for': 'ejs' }
+" Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
+" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 " for laravel
-Plug 'tpope/vim-dispatch', { 'for': 'php' }
-Plug 'tpope/vim-projectionist', { 'for': 'php' }
-Plug 'noahfrederick/vim-composer', { 'for': 'php' }
-Plug 'noahfrederick/vim-laravel', { 'for': 'php' }
+" Plug 'tpope/vim-dispatch', { 'for': 'php' }
+" Plug 'tpope/vim-projectionist', { 'for': 'php' }
+" Plug 'noahfrederick/vim-composer', { 'for': 'php' }
+" Plug 'noahfrederick/vim-laravel', { 'for': 'php' }
 
 " coc
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'neoclide/coc-eslint', { 'do': 'yarn install --frozen-lockfile', 'for': ['javascript', 'typescript'] }
-Plug 'neoclide/coc-highlight', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile', 'for': 'json' }
-Plug 'neoclide/coc-vetur', { 'do': 'yarn install --frozen-lockfile', 'for': 'vue' }
-Plug 'marlonfan/coc-phpls', { 'do': 'yarn install --frozen-lockfile', 'for': 'php' }
-Plug 'fannheyward/coc-markdownlint', { 'do': 'yarn install --frozen-lockfile', 'for': 'markdown' }
-Plug 'iamcco/coc-flutter', { 'do': 'yarn install --frozen-lockfile', 'for': 'dart' }
-Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile', 'for': 'typescript' }
-Plug 'neoclide/coc-tslint-plugin', { 'do': 'yarn install --frozen-lockfile', 'for': 'typescript' }
-Plug 'fannheyward/coc-pyright', { 'do': 'yarn install --frozen-lockfile', 'for': 'python' }
+" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+" Plug 'neoclide/coc-eslint', { 'do': 'yarn install --frozen-lockfile', 'for': ['javascript', 'typescript'] }
+" Plug 'neoclide/coc-highlight', { 'do': 'yarn install --frozen-lockfile' }
+" Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile', 'for': 'json' }
+" Plug 'neoclide/coc-vetur', { 'do': 'yarn install --frozen-lockfile', 'for': 'vue' }
+" Plug 'marlonfan/coc-phpls', { 'do': 'yarn install --frozen-lockfile', 'for': 'php' }
+" Plug 'fannheyward/coc-markdownlint', { 'do': 'yarn install --frozen-lockfile', 'for': 'markdown' }
+" Plug 'iamcco/coc-flutter', { 'do': 'yarn install --frozen-lockfile', 'for': 'dart' }
+" Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile', 'for': 'typescript' }
+" Plug 'neoclide/coc-tslint-plugin', { 'do': 'yarn install --frozen-lockfile', 'for': 'typescript' }
+" Plug 'fannheyward/coc-pyright', { 'do': 'yarn install --frozen-lockfile', 'for': 'python' }
 
 
 " waka-waka
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 
 
 call plug#end()
