@@ -66,7 +66,7 @@ dir=$(dirname "$filepath")
 ln -sf $dir/.zshrc ~/.zshrc
 ln -sf $dir/.vimrc ~/.vimrc
 git clone https://github.com/gpakosz/.tmux.git
-ln -sf .tmux/.tmux.conf
+ln -sf .tmux/.tmux.conf ~/.tmux.conf
 cp .tmux/.tmux.conf.local ~
 
 # setup zim
