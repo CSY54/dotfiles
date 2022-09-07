@@ -50,7 +50,8 @@ return require('packer').startup({function(use)
   -- TODO: refactor `run`
   use {
     'neoclide/coc.nvim',
-    branch = 'release',
+    -- branch = 'release',
+    commit = 'bdf75ab',
     ft = { -- from plugins below
       'javascript',
       'typescript',
@@ -97,8 +98,11 @@ return require('packer').startup({function(use)
   end
 end,
 config = {
+  git = {
+    clone_timeout = 600,
+  },
   display = {
     open_fn = require('packer.util').float,
   },
-}
+},
 })
