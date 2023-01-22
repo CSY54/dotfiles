@@ -16,6 +16,8 @@ return require('packer').startup({function(use)
   }
   use { 'p00f/nvim-ts-rainbow' }
   use { 'windwp/nvim-ts-autotag' }
+  use { 'nvim-treesitter/playground' }
+
 
   -- colorscheme
   use {
@@ -47,31 +49,11 @@ return require('packer').startup({function(use)
   }
 
   -- coc
-  -- TODO: refactor `run`
   use {
     'neoclide/coc.nvim',
-    -- branch = 'release',
-    commit = 'bdf75ab',
-    ft = { -- from plugins below
-      'javascript',
-      'typescript',
-      'json',
-      'markdown',
-      'python',
-      'go',
-      'php',
-      'vue',
-    },
+    branch = 'release',
+    config = [[require('config.coc').setup()]],
   }
-  use { 'neoclide/coc-eslint', ft = { 'javascript', 'typescript' }, run = 'yarn install --frozen-lockfile' }
-  use { 'neoclide/coc-json', ft = 'json', run = 'yarn install --frozen-lockfile' }
-  use { 'neoclide/coc-tsserver', ft = 'typescript', run = 'yarn install --frozen-lockfile' }
-  use { 'neoclide/coc-tslint-plugin', ft = 'typescript', run = 'yarn install --frozen-lockfile' }
-  use { 'fannheyward/coc-markdownlint', ft = 'markdown', run = 'yarn install --frozen-lockfile' }
-  use { 'fannheyward/coc-pyright', ft = 'python', run = 'yarn install --frozen-lockfile' }
-  use { 'josa42/coc-go', ft = 'go', run = 'yarn install --frozen-lockfile' }
-  use { 'marlonfan/coc-phpls', ft = 'php', run = 'yarn install --frozen-lockfile' }
-  use { 'yaegassy/coc-volar', ft = 'vue', run = 'yarn install --frozen-lockfile' }
 
   -- telescope
   use {

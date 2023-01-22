@@ -21,6 +21,7 @@ function M.setup()
       'cpp',
       'css',
       'dockerfile',
+      'elixir',
       'go',
       'html',
       'javascript',
@@ -53,6 +54,9 @@ function M.setup()
       max_file_lines = 500,
     },
     autotag = {
+      enable = true,
+    },
+    playground = {
       enable = true,
     },
   }

@@ -3,6 +3,7 @@ local M = {}
 function M.setup()
   require('onedark').setup {
     style = 'deep',
+    ending_tildes = true,
     highlights = {
       rainbowcol1 = { fg = '$yellow' },
       rainbowcol2 = { fg = '$cyan' },
@@ -11,6 +12,9 @@ function M.setup()
       rainbowcol5 = { fg = '$purple' },
       rainbowcol6 = { fg = '$red' },
       rainbowcol7 = { fg = '$orange' },
+    },
+    code_style = {
+      comments = 'italic,bold',
     },
   }
 
