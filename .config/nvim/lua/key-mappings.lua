@@ -93,6 +93,28 @@ local key_mappings = {
   { 'n', '<leader>fg', ':Telescope live_grep<cr>' },
   { 'n', '<leader>fb', ':Telescope buffers<cr>' },
   { 'n', '<leader>fh', ':Telescope help_tags<cr>' },
+
+  -- bufferline
+  { 'n', '<leader>1', '<cmd>lua require("bufferline").go_to_buffer(1, true)<cr>', { silent = true } },
+  { 'n', '<leader>2', '<cmd>lua require("bufferline").go_to_buffer(2, true)<cr>', { silent = true } },
+  { 'n', '<leader>3', '<cmd>lua require("bufferline").go_to_buffer(3, true)<cr>', { silent = true } },
+  { 'n', '<leader>4', '<cmd>lua require("bufferline").go_to_buffer(4, true)<cr>', { silent = true } },
+  { 'n', '<leader>5', '<cmd>lua require("bufferline").go_to_buffer(5, true)<cr>', { silent = true } },
+  { 'n', '<leader>6', '<cmd>lua require("bufferline").go_to_buffer(6, true)<cr>', { silent = true } },
+  { 'n', '<leader>7', '<cmd>lua require("bufferline").go_to_buffer(7, true)<cr>', { silent = true } },
+  { 'n', '<leader>8', '<cmd>lua require("bufferline").go_to_buffer(8, true)<cr>', { silent = true } },
+  { 'n', '<leader>9', '<cmd>lua require("bufferline").go_to_buffer(9, true)<cr>', { silent = true } },
+  { 'n', '<leader>$', '<cmd>lua require("bufferline").go_to_buffer(-1, true)<cr>', { silent = true } },
+  -- { 'n', '<leader>1', '<cmd>BufferLineGoToBuffer 1<cr>', { silent = true } },
+  -- { 'n', '<leader>2', '<cmd>BufferLineGoToBuffer 2<cr>', { silent = true } },
+  -- { 'n', '<leader>3', '<cmd>BufferLineGoToBuffer 3<cr>', { silent = true } },
+  -- { 'n', '<leader>4', '<cmd>BufferLineGoToBuffer 4<cr>', { silent = true } },
+  -- { 'n', '<leader>5', '<cmd>BufferLineGoToBuffer 5<cr>', { silent = true } },
+  -- { 'n', '<leader>6', '<cmd>BufferLineGoToBuffer 6<cr>', { silent = true } },
+  -- { 'n', '<leader>7', '<cmd>BufferLineGoToBuffer 7<cr>', { silent = true } },
+  -- { 'n', '<leader>8', '<cmd>BufferLineGoToBuffer 8<cr>', { silent = true } },
+  -- { 'n', '<leader>9', '<cmd>BufferLineGoToBuffer 9<cr>', { silent = true } },
+  -- { 'n', '<leader>$', '<cmd>BufferLineGoToBuffer -1<cr>', { silent = true } },
 }
 
 utils.for_each(
