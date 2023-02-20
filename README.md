@@ -9,7 +9,7 @@ My dotfiles.
 Remove the `exit` command in `setup.sh` if you want to setup.
 
 ```sh
-sh setup.sh
+./setup.sh
 ```
 
 ## Current
@@ -22,12 +22,12 @@ sh setup.sh
 
 ## TODO
 
-- `setup.sh`
-  - [x] Install `zsh`, `curl`, `git`, `tmux`
-  - [x] Install Vim
-  - [x] Install Zim
-  - [x] Install Zim for Zsh
-  - [x] Install [vim-plug](https://github.com/junegunn/vim-plug) for Vim
-  - [x] Setup Sauce Code Pro Nerd Font Complete Mono font
-- `.zshrc`
-- test `setup.sh` on macOS and Ubuntu
+- [ ] Install Neovim with `stable` tag
+- [ ] Zim would failed to install if shell has not yet set to Zsh
+- [ ] Setup asdf, with `nodejs` and `python` pre-installed
+- [ ] Install packages required by extensions
+  - `node` (by asdf)
+  - `ripgrep`, `fd-find` (for telescope)
+  - `tree-sitter-cli` (for treesitter)
+  - `gcc`, `g++` (for compiling treesitter parser)
+
