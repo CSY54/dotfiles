@@ -27,15 +27,15 @@ return require('packer').startup({function(use)
 
   -- file explorer
   use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
+    'nvim-tree/nvim-tree.lua',
+    requires = 'nvim-tree/nvim-web-devicons',
     config = [[require('config.nvimtree').setup()]],
   }
 
   -- statusline
   use {
     'nvim-lualine/lualine.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
+    requires = 'nvim-tree/nvim-web-devicons',
     after = 'onedark.nvim',
     config = [[require('config.statusline').setup()]],
   }
@@ -44,7 +44,7 @@ return require('packer').startup({function(use)
   use {
     'akinsho/bufferline.nvim',
     tag = 'v2.*',
-    requires = 'kyazdani42/nvim-web-devicons',
+    requires = 'nvim-tree/nvim-web-devicons',
     config = [[require('config.bufferline').setup()]],
   }
 
