@@ -1,0 +1,41 @@
+font-family = "JetBrainsMono NFM Regular"
+font-size = 10
+
+theme = Catppuccin Mocha
+
+cursor-style = block
+cursor-style-blink = false
+
+# TODO: seems not working
+notify-on-command-finish = always
+
+maximize = true
+fullscreen = false
+
+keybind = performable:super+shift+h=goto_split:left
+keybind = performable:super+shift+j=goto_split:bottom
+keybind = performable:super+shift+k=goto_split:top
+keybind = performable:super+shift+l=goto_split:right
+
+keybind = global:alt+space=toggle_visibility
+
+keybind = super+shift+arrow_up=jump_to_prompt:-1
+keybind = super+shift+arrow_down=jump_to_prompt:1
+
+background-opacity = 0.7
+background-blur = 10
+keybind = super+u=toggle_background_opacity
+
+macos-titlebar-style = tabs
+macos-hidden = always
+
+split-divider-color = #333333
+
+window-padding-x = 6
+window-padding-y = 4
+window-save-state = always
+
+scrollback-limit = 100_000_000
+
+shell-integration = detect
+# shell-integration = zsh

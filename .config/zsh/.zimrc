@@ -1,7 +1,12 @@
 # Start configuration added by Zim install {{{
-# -------
+#
+# This is not sourced during shell startup, and it's only used to configure the
+# zimfw plugin manager.
+#
+
+#
 # Modules
-# -------
+#
 
 # Sets sane Zsh built-in environment options.
 zmodule environment
@@ -17,32 +22,39 @@ zmodule utility
 #
 # Prompt
 #
-# Exposes git repository status information to prompts.
+
+# Exposes to prompts how long the last command took to execute, used by asciiship.
+zmodule duration-info
+# Exposes git repository status information to prompts, used by asciiship.
 zmodule git-info
-# A customizable version of steeef's prompt theme.
-zmodule steeef
+# A heavily reduced, ASCII-only version of the Spaceship and Starship prompts.
+zmodule asciiship
+
+#
+# Completion
+#
 
 # Additional completion definitions for Zsh.
-zmodule zsh-users/zsh-completions
+zmodule zsh-users/zsh-completions --fpath src
 # Enables and configures smart and extensive tab completion.
-# completion must be sourced after zsh-users/zsh-completions
+# completion must be sourced after all modules that add completion definitions.
 zmodule completion
-# Fish-like autosuggestions for Zsh.
-zmodule zsh-users/zsh-autosuggestions
+
+#
+# Modules that must be initialized last
+#
+
 # Fish-like syntax highlighting for Zsh.
 # zsh-users/zsh-syntax-highlighting must be sourced after completion
 zmodule zsh-users/zsh-syntax-highlighting
 # Fish-like history search (up arrow) for Zsh.
 # zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
+# Fish-like autosuggestions for Zsh.
+zmodule zsh-users/zsh-autosuggestions
 # }}} End configuration added by Zim install
 
-# installed
-zmodule romkatv/powerlevel10k
-zmodule hlissner/zsh-autopair
-zmodule voronkovich/phpcs.plugin.zsh -n phpcs
-zmodule RobertAudi/tsm
-zmodule jessarcher/zsh-artisan -n artisan
-zmodule mattmc3/zsh-safe-rm
-zmodule le0me55i/zsh-extract -n extract
-zmodule MichaelAquilina/zsh-you-should-use -n you-should-use
+zmodule romkatv/powerlevel10k --use degit
+zmodule joke/zim-mise
+zmodule archive
+zmodule fzf

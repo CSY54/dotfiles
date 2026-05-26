@@ -1,7 +1,23 @@
 [tools]
-node = "20"
-python = "3.11"
-php = "8.3.9"
+cargo-binstall = "latest"
+"cargo:bat" = "latest"
+"cargo:eza" = "latest"
+"cargo:fd-find" = "latest"
+"cargo:zoxide" = "latest"
+"github:BurntSushi/ripgrep" = "latest"
+"cargo:tokei" = "latest"
+go = "latest"
+"go:github.com/junegunn/fzf" = "latest"
+java = "openjdk-25.0.1"
+node = "24.15.0"
+python = "3.14.5"
+rust = "stable"
+uv = "latest"
+just = "latest"
 
 [settings]
-legacy_version_file = false
+idiomatic_version_file_enable_tools = []
+python.uv_venv_auto = "source"
+minimum_release_age = "7d"               # only install versions released more than 7 days ago
+not_found_auto_install = false           # why is this default to true?
+experimental = true

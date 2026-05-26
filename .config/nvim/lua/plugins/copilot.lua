@@ -5,8 +5,18 @@ return {
   event = "BufReadPost",
   opts = {
     suggestion = {
+      auto_trigger = true,
+      debounce = 150,
+
       keymap = {
         accept = false, -- handled by completion engine
+      },
+    },
+    server_opts_overrides = {
+      settings = {
+        telemetry = {
+          telemetryLevel = "off",
+        },
       },
     },
   },
