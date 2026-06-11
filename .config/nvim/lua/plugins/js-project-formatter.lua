@@ -63,8 +63,16 @@ return {
         -- for oxfmt
         oxfmt = function()
           require("null-ls").register(require("none-ls.formatting.oxfmt").with {
-            -- NOTE: it seems that for projects with oxfmt configured, it will correctly find the local one and use it
-            extra_args = { "-c", vim.fn.stdpath "config" .. "/extras/oxfmtrc.json" },
+            prepend_extra_args = true,
+            extra_args = function()
+              local utils = require("null-ls.utils").make_conditional_utils()
+              if has_oxfmt_config(utils) then
+                return {}
+              else
+                return { "-c", vim.fn.stdpath "config" .. "/extras/oxfmtrc.json" }
+              end
+            end,
+
             condition = function(utils)
               return has_oxfmt_config(utils) or (not has_prettier_config(utils) and not has_biome_config(utils))
             end,
