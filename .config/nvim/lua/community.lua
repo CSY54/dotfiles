@@ -13,13 +13,14 @@ return {
   { import = "astrocommunity.colorscheme.catppuccin" },
 
   { import = "astrocommunity.editing-support.nvim-treesitter-context" },
-  { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
 
   { import = "astrocommunity.git.git-blame-nvim" },
 
   { import = "astrocommunity.indent.indent-blankline-nvim" },
 
   { import = "astrocommunity.lsp.ts-error-translator-nvim" },
+
+  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
 
   {
     import = "astrocommunity.media.vim-wakatime",
@@ -32,7 +33,7 @@ return {
   { import = "astrocommunity.pack.ansible" },
   -- { import = "astrocommunity.pack.astro" },
   { import = "astrocommunity.pack.bash" },
-  -- { import = "astrocommunity.pack.biome" },
+  { import = "astrocommunity.pack.biome" },
   -- { import = "astrocommunity.pack.cmake" },
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.docker" },

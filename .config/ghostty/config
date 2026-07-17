@@ -39,3 +39,5 @@ scrollback-limit = 100_000_000
 
 shell-integration = detect
 # shell-integration = zsh
+
+desktop-notifications = true

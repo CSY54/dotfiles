@@ -14,6 +14,7 @@ python = "3.14.5"
 rust = "stable"
 uv = "latest"
 just = "latest"
+yazi = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
@@ -21,3 +22,13 @@ python.uv_venv_auto = "source"
 minimum_release_age = "7d"               # only install versions released more than 7 days ago
 not_found_auto_install = false           # why is this default to true?
 experimental = true
+
+[tool_alias.node]
+
+[tool_alias.node.versions]
+neovim = "24.15.0"
+
+[tool_alias.python]
+
+[tool_alias.python.versions]
+neovim = "3.14.5"

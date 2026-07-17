@@ -198,3 +198,13 @@ alias rm='trash'
 fpath=("$ZDOTDIR/functions" $fpath)
 # Autoload all functions
 autoload -Uz $ZDOTDIR/functions/*(:t)
+
+# man page
+export MANWIDTH=120
+
+# skills
+# see: https://www.skills.sh/docs/cli
+export DISABLE_TELEMETRY=1
+
+# sbx (docker sandbox)
+export SBX_NO_TELEMETRY=1

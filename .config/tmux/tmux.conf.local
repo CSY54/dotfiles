@@ -1,0 +1,324 @@
+# : << 'EOF'
+# Oh my tmux!
+# 💛🩷💙🖤❤️🤍
+# https://github.com/gpakosz/.tmux
+# (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
+#         without any warranty.
+#         Copyright 2012— Gregory Pakosz (@gpakosz).
+
+set -g default-terminal 'tmux-256color'
+set -ag terminal-overrides ',xterm-256color:RGB'
+
+# -- bindings ------------------------------------------------------------------
+
+# preserve tmux stock bindings,
+# while adding bindings that don't conflict with these stock bindings
+# /!\ this disables some of Oh my tmux! bindings described in README.md
+#   - true
+#   - false (default)
+tmux_conf_preserve_stock_bindings=false
+
+
+# -- session creation ----------------------------------------------------------
+
+# prompt for session name when creating a new session, possible values are:
+#   - true
+#   - false (default)
+#   - disabled (do not modify new-session bindings)
+tmux_conf_new_session_prompt=false
+
+# new session retains current path, possible values are:
+#   - true
+#   - false (default)
+#   - disabled (do not modify new-session bindings)
+tmux_conf_new_session_retain_current_path=false
+
+
+# -- windows & pane creation ---------------------------------------------------
+
+# new window retains current path, possible values are:
+#   - true
+#   - false (default)
+#   - disabled (do not modify new-window bindings)
+tmux_conf_new_window_retain_current_path=false
+
+# new window tries to reconnect ssh sessions, possible values are:
+#   - true
+#   - false (default)
+#   - disabled (do not modify new-window bindings)
+tmux_conf_new_window_reconnect_ssh=false
+
+# new pane retains current path, possible values are:
+#   - true (default)
+#   - false
+#   - disabled (do not modify split-window bindings)
+tmux_conf_new_pane_retain_current_path=true
+
+# new pane tries to reconnect ssh sessions, possible values are:
+#   - true
+#   - false (default)
+#   - disabled (do not modify split-window bindings)
+tmux_conf_new_pane_reconnect_ssh=false
+
+
+# -- display -------------------------------------------------------------------
+
+# RGB 24-bit colour support, possible values are:
+#   - true
+#   - false
+#   - auto (default)
+#
+# automatic detection relies on the COLORTERM environment variable being defined
+# to 'truecolor' or '24bit' or '$ tput colors' answering '16777216'
+# see https://github.com/termstandard/colors
+tmux_conf_24b_colour=auto
+
+
+# -- theming -------------------------------------------------------------------
+
+# enable or disable theming:
+#   - enabled (default)
+#   - disabled
+# when disabled, all tmux_conf_theme_xxx variables are ignored except:
+#   - tmux_conf_theme_pairing
+#   - tmux_conf_theme_prefix
+#   - tmux_conf_theme_mouse
+#   - tmux_conf_theme_root
+#   - tmux_conf_theme_synchronized
+tmux_conf_theme=disabled
+
+
+# -- clipboard -----------------------------------------------------------------
+
+# in copy mode, copying selection also copies to the OS clipboard
+#   - true
+#   - false (default)
+#   - disabled
+# on Linux, this requires xsel, xclip or wl-copy
+tmux_conf_copy_to_os_clipboard=false
+
+
+# -- urlscan -------------------------------------------------------------------
+
+# options passed to urlscan
+tmux_conf_urlscan_options="--compact --dedupe"
+
+
+# -- user customizations -------------------------------------------------------
+
+# this is the place to override or undo settings
+
+# increase history size
+set -g history-limit 10000
+
+# start with mouse mode enabled
+set -g mouse on
+
+# force Vi mode
+#   really you should export VISUAL or EDITOR environment variable, see manual
+#set -g status-keys vi
+#set -g mode-keys vi
+
+# replace C-b by C-a instead of using both prefixes
+# set -gu prefix2
+# unbind C-a
+# unbind C-b
+# set -g prefix C-a
+# bind C-a send-prefix
+
+# if you don't want Oh my tmux! to alter a binding or a setting, use #!important
+# bind c new-window -c '#{pane_current_path}' #!important
+
+# display a message after toggling mouse support
+bind m run "cut -c3- '#{TMUX_CONF}' | sh -s _toggle_mouse" \; display 'mouse #{?#{mouse},on,off}'
+
+# move status line to top
+#set -g status-position top
+
+
+# -- tpm -----------------------------------------------------------------------
+
+# while I don't use tpm myself, many people requested official support so here
+# is a seamless integration that automatically installs plugins in parallel
+
+# whenever a plugin introduces a variable to be used in 'status-left' or
+# 'status-right', you can use it in 'tmux_conf_theme_status_left' and
+# 'tmux_conf_theme_status_right' variables.
+
+# by default, launching tmux will update tpm and all plugins
+#   - true (default)
+#   - false
+tmux_conf_update_plugins_on_launch=false
+
+# by default, reloading the configuration will update tpm and all plugins
+#   - true (default)
+#   - false
+tmux_conf_update_plugins_on_reload=false
+
+# by default, reloading the configuration will uninstall tpm and plugins when no
+# plugins are enabled
+#   - true (default)
+#   - false
+tmux_conf_uninstall_plugins_on_reload=false
+
+# /!\ the tpm bindings differ slightly from upstream:
+#   - installing plugins: <prefix> + I
+#   - uninstalling plugins: <prefix> + Alt + u
+#   - updating plugins: <prefix> + u
+
+# /!\ do not add set -g @plugin 'tmux-plugins/tpm'
+# /!\ do not add run '~/.tmux/plugins/tpm/tpm'
+
+# /!\ the 'set -g @tpm_plugins' syntax is not supported
+# to enable a plugin, use the 'set -g @plugin' syntax:
+# visit https://github.com/tmux-plugins for available plugins
+#set -g @plugin 'tmux-plugins/tmux-copycat'
+#set -g @plugin 'tmux-plugins/tmux-cpu'
+#set -g @plugin 'tmux-plugins/tmux-resurrect'
+#set -g @plugin 'tmux-plugins/tmux-continuum'
+#set -g @continuum-restore 'on'
+
+
+# -- custom variables ----------------------------------------------------------
+
+# to define a custom #{foo} variable, define a POSIX shell function between the
+# '# EOF' and the '# "$@"' lines. Please note that the opening brace { character
+# must be on the same line as the function name otherwise the parse won't detect
+# it.
+#
+# then, use #{foo} in e.g. the 'tmux_conf_theme_status_left' or the
+# 'tmux_conf_theme_status_right' variables.
+
+
+# -- use our custom tpm --------------------------------------------------------
+# the tpm used by oh-my-tmux could not
+# - pin plugin version with `'tmux-plugins/plugin#v1.2.3'` syntax
+# - load catppuccin/tmux before setting any other status-related variables
+
+if "test ! -d ~/.config/tmux/plugins/tpm" \
+  "run 'git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm && \
+      ~/.config/tmux/plugins/tpm/bin/install_plugins'"
+
+# NOTE: use a deprecated `@tpm_plugins` syntax to prevent oh-my-tmux from picking up
+set -g @tpm_plugins '\
+  tmux-plugins/tpm \
+  catppuccin/tmux#v2.3.0 \
+  tmux-plugins/tmux-battery#v2.0.0 \
+  CSY54/tmux-cpu \
+  robhurring/tmux-uptime \
+  christoomey/vim-tmux-navigator \
+  tmux-plugins/tmux-resurrect \
+  tmux-plugins/tmux-continuum \
+'
+
+source -F "#{d:current_file}/plugins.conf"
+
+# the status line design is taken from https://github.com/catppuccin/tmux/discussions/317#discussioncomment-11064512
+
+set -g @separator_bar "#{#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]}│"
+
+# status left look and feel
+set -g status-left-length 100
+set -g status-left ""
+set -ga status-left "#{?client_prefix,#{#[bg=#{@thm_red},fg=#{@thm_bg},bold]  #S },#{#[bg=#{@thm_bg},fg=#{@thm_green}]  #S }}"
+set -ga status-left "#{E:@separator_bar}"
+set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_maroon}]  #{pane_current_command} "
+set -ga status-left "#{E:@separator_bar}"
+set -ga status-left "#[bg=#{@thm_bg},fg=#{@thm_blue}]  #{=/-32/...:#{s|$USER|~|:#{b:pane_current_path}}} "
+set -ga status-left "#{?window_zoomed_flag,#{E:@separator_bar},}"
+set -ga status-left "#{?window_zoomed_flag,#{#[bg=#{@thm_bg},fg=#{@thm_yellow}]} 󰁌 zoom,}"
+
+# status right look and feel
+set -g status-right-length 100
+set -g status-right ""
+set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_lavender}] 󰐥 #{uptime} "
+set -ga status-right "#{E:@separator_bar}"
+set -ga status-right "#{?#{cpu_percentage},#{cpu_bg_color}#{cpu_fg_color} #{cpu_icon} #{cpu_percentage} ,}"
+set -ga status-right "#{?#{cpu_percentage},#{E:@separator_bar},}"
+set -ga status-right "#{?#{gpu_percentage},#{gpu_bg_color}#{gpu_fg_color} #{gpu_icon} #{gpu_percentage} ,}"
+set -ga status-right "#{?#{gpu_percentage},#{E:@separator_bar},}"
+set -ga status-right "#{?#{ram_percentage},#{ram_bg_color}#{ram_fg_color} #{ram_icon} #{ram_percentage} ,}"
+set -ga status-right "#{?#{ram_percentage},#{E:@separator_bar},}"
+set -g @battery_percentage '#{battery_percentage}'
+set -g @battery_style '#{?#{e|<:#{s/.$//:@battery_percentage},20},#{#[bg=#{@thm_red},fg=#{@thm_bg}]},#{#[bg=#{@thm_bg},fg=#{@thm_pink}]}}'
+set -ga status-right '#{?#{==:#{E:@battery_exists},true},#{E:@battery_style} #{battery_icon} #{battery_percentage} ,}'
+set -ga status-right "#{?#{==:#{E:@battery_exists},true},#{E:@separator_bar},}"
+set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_blue}] 󰅐 %Y-%m-%d %H:%M "
+set -ga status-right "#{E:@separator_bar}"
+set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_mauve}] 󰌢 #(whoami)#{?SSH_CONNECTION,@#h,}"
+set -ga status-right " "
+
+run ~/.config/tmux/plugins/tpm/tpm
+
+# configure tmux
+set -g status-style "bg=default"
+set -g status-justify "absolute-centre"
+
+# pane border look and feel
+setw -g pane-border-status bottom
+setw -g pane-border-format ""
+setw -g pane-active-border-style "bg=default,fg=#{@thm_overlay_0}"
+setw -g pane-border-style "bg=default,fg=#{@thm_surface_0}"
+setw -g pane-border-lines single
+
+# window look and feel
+set -wg automatic-rename on
+set -g automatic-rename-format ""
+
+set -g window-status-format " #I#{?#{!=:#{window_name},},: #W,} "
+set -g window-status-style "bg=#{@thm_bg},fg=#{@thm_rosewater}"
+set -g window-status-last-style "bg=#{@thm_bg},fg=#{@thm_peach}"
+set -g window-status-activity-style "bg=#{@thm_red},fg=#{@thm_bg}"
+set -g window-status-bell-style "bg=#{@thm_red},fg=#{@thm_bg},bold"
+set -gF window-status-separator "#{E:@separator_bar}"
+
+set -g window-status-current-format " #I#{?#{!=:#{window_name},},: #W,} "
+set -g window-status-current-style "bg=#{@thm_peach},fg=#{@thm_bg},bold"
+
+set -g set-titles on
+set -g set-titles-string '#{?SSH_CONNECTION,#h ,}❐ #S ● #I #W'
+
+
+# ------------------------------------------------------------------------------
+
+# # /!\ do not remove the following line
+# EOF
+#
+# # /!\ do not "uncomment" the functions: the leading "# " characters are needed
+#
+# # usage: #{weather}
+# weather() {                                         # see https://github.com/chubin/wttr.in#one-line-output
+#   curl -f -s -m 2 'wttr.in?format=3' || printf '\n' # /!\ make sure curl is installed
+#   sleep 900                                         # sleep for 15 minutes, throttle network requests whatever the value of status-interval
+# }
+#
+# # usage: #{online}
+# online() {
+#   ping -c 1 1.1.1.1 >/dev/null 2>&1 && printf '✔' || printf '✘'
+# }
+#
+# # usage: #{wan_ip_v4}
+# wan_ip_v4() {
+#   curl -f -s -m 2 -4 ifconfig.me
+#   sleep 300                                         # sleep for 5 minutes, throttle network requests whatever the value of status-interval
+# }
+#
+# # usage: #{wan_ip_v6}
+# wan_ip_v6() {
+#   curl -f -s -m 2 -6 ifconfig.me
+#   sleep 300                                         # sleep for 5 minutes, throttle network requests whatever the value of status-interval
+# }
+#
+# # usage: #{github_stars}, #{github_stars tmux/tmux}, ...
+# github_stars() {
+#   repository=${1##*https://github.com/}
+#   repository=${repository%% *}
+#   repository=${repository%%.git}
+#   url="https://api.github.com/repos/${repository:-gpakosz/.tmux}"
+#   curl -s "$url" | perl -MJSON::PP=decode_json -CO -0777 -E '$response = decode_json(readline *STDIN); say ($response->{stargazers_count})'
+#   sleep 300                                         # sleep for 5 minutes, throttle network requests whatever the value of status-interval
+# }
+#
+# "$@"
+# # /!\ do not remove the previous line
+# #     do not write below this line
